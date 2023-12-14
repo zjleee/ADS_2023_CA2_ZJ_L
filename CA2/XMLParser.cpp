@@ -52,28 +52,24 @@ TreeNode* XMLParser::processFile(tinyxml2::XMLElement* element) {
 bool XMLParser::validateXML() {
     tinyxml2::XMLDocument doc;
     if (doc.LoadFile(filename.c_str()) != tinyxml2::XML_SUCCESS) {
-        return false; // File could not be loaded
+        return false;
     }
 
     std::stack<std::string> tags;
     for (tinyxml2::XMLElement* elem = doc.FirstChildElement(); elem != nullptr; elem = elem->NextSiblingElement()) {
         if (elem->NoChildren()) {
-            // Self-closing tag, no need to push to stack
         }
         else {
-            // Push opening tag onto the stack
             tags.push(elem->Value());
         }
 
-        // For each closing tag, check if it matches the top of the stack
         if (!tags.empty() && tags.top() == elem->Value()) {
             tags.pop();
         }
         else {
-            // Mismatched or missing closing tag
             return false;
         }
     }
 
-    return tags.empty(); // Return true if all tags were properly closed and nested
+    return tags.empty(); 
 }

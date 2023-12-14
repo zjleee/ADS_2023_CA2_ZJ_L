@@ -5,8 +5,8 @@
 class TreeNode {
 public:
     std::string name;
-    std::string type;  // "file" or "dir"
-    std::string length; // For files
+    std::string type;  
+    std::string length; 
     std::vector<TreeNode*> children;
     
   
@@ -15,7 +15,7 @@ public:
     ~TreeNode();
     void addChild(TreeNode* child);
     int pruneEmptyFolders();
-    int countItems();  // Count the number of items in a folder
+    int countItems();  
     int memoryUsed();
     std::string findPath(const std::string& searchName);
 };

@@ -11,11 +11,10 @@ namespace XMLParserTest
     public:
         TEST_METHOD(TestParseXML)
         {
-            XMLParser parser("valid.xml"); // Replace with the path to your actual XML file
+            XMLParser parser("valid.xml"); 
             TreeNode* root = parser.parseXML();
 
-            Assert::IsNotNull(root); // Verify that the root is not null, indicating successful parsing
-            // Additional checks can be added to validate the structure of the tree
+            Assert::IsNotNull(root); 
         }
 
         TEST_METHOD(TestValidateXML_ValidFile)
@@ -26,7 +25,7 @@ namespace XMLParserTest
 
         TEST_METHOD(TestValidateXML_InvalidFile)
         {
-            XMLParser invalidParser("invalid.xml"); // Use an invalid XML file path
+            XMLParser invalidParser("invalid.xml"); 
             Assert::IsFalse(invalidParser.validateXML());
         }
     };

@@ -13,5 +13,4 @@ private:
     std::string filename;
     TreeNode* processDirectory(tinyxml2::XMLElement* element);
     TreeNode* processFile(tinyxml2::XMLElement* element);
-    // Additional helper functions if needed
 };

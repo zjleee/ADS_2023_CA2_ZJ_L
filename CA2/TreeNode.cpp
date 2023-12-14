@@ -17,7 +17,7 @@ void TreeNode::addChild(TreeNode* child) {
 int TreeNode::countItems() {
     int count = 0;
     for (auto child : children) {
-        count += 1 + child->countItems(); // Count child and its descendants
+        count += 1 + child->countItems(); 
     }
     return count;
 }
@@ -31,12 +31,10 @@ int TreeNode::memoryUsed() {
         TreeNode* current = q.front();
         q.pop();
 
-        // If it's a file, add its size to the total
         if (current->type == "file") {
             totalMemory += std::stoi(current->length);
         }
 
-        // Add all children to the queue
         for (auto child : current->children) {
             q.push(child);
         }
@@ -58,7 +56,7 @@ TreeNode* TreeNode::findNode(const std::string& searchName) {
         }
     }
 
-    return nullptr; // If not found
+    return nullptr; 
 }
 
 int TreeNode::pruneEmptyFolders() {
@@ -67,14 +65,12 @@ int TreeNode::pruneEmptyFolders() {
     while (it != children.end()) {
         TreeNode* child = *it;
 
-        // Prune child and count how many were removed
         prunedCount += child->pruneEmptyFolders();
 
-        // Check if child is an empty folder
         if (child->type == "dir" && child->children.empty()) {
-            delete child;  // Free memory
-            it = children.erase(it);  // Remove from children list
-            prunedCount++;  // Increment count for this node
+            delete child;  
+            it = children.erase(it);  
+            prunedCount++;  
         }
         else {
             ++it;
@@ -84,18 +80,16 @@ int TreeNode::pruneEmptyFolders() {
 }
 
 std::string TreeNode::findPath(const std::string& searchName) {
-    // Check if the current node matches the search name
     if (this->name.find(searchName) != std::string::npos) {
-        return "/" + this->name;  // Found the node
+        return "/" + this->name;  
     }
 
-    // Search in children
     for (auto child : children) {
         std::string path = child->findPath(searchName);
         if (!path.empty()) {
-            return "/" + this->name + path;  // Append current node's name to the path
+            return "/" + this->name + path; 
         }
     }
 
-    return "";  // Not found in this branch
+    return ""; 
 }

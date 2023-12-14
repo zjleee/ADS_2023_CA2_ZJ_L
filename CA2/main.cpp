@@ -6,28 +6,24 @@
 
 using namespace std;
 
-// Function prototypes for your functionalities
-void countItems(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  // Define this function
-void determineMemoryUsage(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  // Define this function
-void pruneEmptyFolders(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  // Define this function
-void findFolder(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  // Define this function
-void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  // Define this function
+void countItems(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  
+void determineMemoryUsage(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  
+void pruneEmptyFolders(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  
+void findFolder(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  
+void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& font);  
 void printTreeToStream(TreeNode* node, std::stringstream& stream, int depth, bool includeSize);
 
 void printTree(TreeNode* node, int depth = 0, bool includeSize = false) {
     if (!node) return;
 
-    // Indentation for visual hierarchy
     string indentation(depth * 4, ' ');
 
-    // Print node details
     cout << indentation << "- " << node->name;
     if (node->type == "file" && includeSize) {
         cout << " (File, Size: " << node->length << ")";
     }
     cout << endl;
 
-    // Recursive call for children
     for (auto child : node->children) {
         printTree(child, depth + 1, includeSize);
     }
@@ -131,7 +127,6 @@ int main() {
         window.display();
     }
    
-    // Cleanup
     delete root;
     return 0;
 }
@@ -158,7 +153,7 @@ void countItems(TreeNode* root, sf::RenderWindow& window, sf::Font& font) {
                 window.close();
             }
             else if (event.type == sf::Event::TextEntered) {
-                if (event.text.unicode == '\b' && !input.empty()) {  // Handle backspace
+                if (event.text.unicode == '\b' && !input.empty()) { 
                     input.pop_back();
                 }
                 else if (event.text.unicode < 128 && event.text.unicode != '\r' && event.text.unicode != '\n') {
@@ -167,14 +162,13 @@ void countItems(TreeNode* root, sf::RenderWindow& window, sf::Font& font) {
             }
             else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Enter) {
-                    done = true;  // User pressed Enter, finish input
+                    done = true; 
                 }
             }
         }
 
         inputText.setString(input);
 
-        // Redraw the window
         window.clear();
         window.draw(prompt);
         window.draw(inputText);
@@ -195,7 +189,6 @@ void countItems(TreeNode* root, sf::RenderWindow& window, sf::Font& font) {
     window.draw(outputText);
     window.display();
 
-    // Wait for a few seconds or until user closes the window
     sf::Clock clock;
     while (window.isOpen() && clock.getElapsedTime().asSeconds() < 4 ) {
         sf::Event event;
@@ -204,7 +197,6 @@ void countItems(TreeNode* root, sf::RenderWindow& window, sf::Font& font) {
                 window.close();
             }
             else if (event.type == sf::Event::MouseButtonPressed) {
-                // If any mouse button is pressed, exit the loop
                 return;
             }
         }
@@ -395,8 +387,8 @@ void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& f
     prompt.setPosition(50, 20);
     prompt.setFillColor(sf::Color::White);
 
-    sf::Text outputText("", font, 15); // Adjust font size for better readability
-    outputText.setPosition(50, 150);    // Adjust position as needed
+    sf::Text outputText("", font, 15); 
+    outputText.setPosition(50, 150);    
     outputText.setFillColor(sf::Color::Yellow);
 
     bool done = false;
@@ -407,7 +399,7 @@ void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& f
                 window.close();
             }
             else if (event.type == sf::Event::TextEntered) {
-                if (event.text.unicode == '\b' && !input.empty()) {  // Handle backspace
+                if (event.text.unicode == '\b' && !input.empty()) { 
                     input.pop_back();
                 }
                 else if (event.text.unicode < 128 && event.text.unicode != '\r' && event.text.unicode != '\n') {
@@ -416,14 +408,13 @@ void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& f
             }
             else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Enter) {
-                    done = true;  // User pressed Enter, finish input
+                    done = true;  
                 }
             }
         }
 
         inputText.setString(input);
 
-        // Redraw the window
         window.clear();
         window.draw(prompt);
         window.draw(inputText);
@@ -433,7 +424,7 @@ void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& f
     TreeNode* folderNode = root->findNode(input);
     if (folderNode && folderNode->type == "dir") {
         std::stringstream contentStream;
-        printTreeToStream(folderNode, contentStream, 0, true);  // Function to print tree contents to stream
+        printTreeToStream(folderNode, contentStream, 0, true);  
         outputText.setString(contentStream.str());
     }
     else {
@@ -446,7 +437,6 @@ void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& f
     window.draw(outputText);
     window.display();
 
-    // Wait for a few seconds or until user closes the window
     sf::Clock clock;
     while (window.isOpen() && clock.getElapsedTime().asSeconds() < 4) {
         sf::Event event;
@@ -464,17 +454,14 @@ void displayFolderContents(TreeNode* root, sf::RenderWindow& window, sf::Font& f
 void printTreeToStream(TreeNode* node, std::stringstream& stream, int depth = 0, bool includeSize = false) {
     if (!node) return;
 
-    // Indentation for visual hierarchy
     std::string indentation(depth * 4, ' ');
 
-    // Append node details to stream
     stream << indentation << "- " << node->name;
     if (node->type == "file" && includeSize) {
         stream << " (File, Size: " << node->length << ")";
     }
     stream << "\n";
 
-    // Recursive call for children
     for (auto child : node->children) {
         printTreeToStream(child, stream, depth + 1, includeSize);
     }
