@@ -38,6 +38,9 @@
     <ClInclude Include="TreeNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\SFML\Graphics\Font.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="vs_sample_simple.xml">
@@ -49,5 +52,10 @@
     <Xml Include="unity_sample.xml">
       <Filter>Resource Files</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Arial.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>
