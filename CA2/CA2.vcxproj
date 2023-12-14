@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -128,13 +128,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="DListNode.h" />
+    <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="TreeNode.cpp" />
+    <ClCompile Include="XMLParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DList.h" />
-    <ClInclude Include="DListIterator.h" />
-    <ClInclude Include="Tree.h" />
-    <ClInclude Include="TreeIterator.h" />
+    <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="XMLParser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="unity_sample.xml" />
+    <Xml Include="vs_sample.xml" />
+    <Xml Include="vs_sample_simple.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
