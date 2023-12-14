@@ -10,7 +10,6 @@ public:
     std::vector<TreeNode*> children;
     
   
-
     TreeNode* findNode(const std::string& searchName);
     TreeNode(std::string name, std::string type, std::string length = "");
     ~TreeNode();
