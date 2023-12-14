@@ -24,10 +24,24 @@
     <ClCompile Include="TreeNodeTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMLParserTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="invalid.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="vs_sample_simple.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="valid.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
